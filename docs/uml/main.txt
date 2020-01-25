@@ -1,0 +1,28 @@
+@startuml
+'Use plantuml to view this file as an image: http://plantuml.com'
+
+skinparam monochrome true
+
+start
+
+:Apply validations;
+
+if (validations passed?) then (yes)
+
+  :Ensure dependencies are installed;
+
+  repeat
+    :Obtain current task;
+
+    :Execute current task;
+
+    :Delete current task;
+  repeat while (tasks left?)
+
+else (no)
+  :Show validation errors;
+endif
+
+end
+
+@enduml

@@ -1,0 +1,9 @@
+---
+# Example configuration with repositories to clone.
+
+users:
+  - mary
+
+user_tasks:
+  - item_path: https://is.gd/uE0TTp
+    item_expand: false

@@ -1,0 +1,23 @@
+---
+- name: Display Role Details.
+  debug:
+    msg:
+      - '===================================================================='
+      - 'constrict0r.task'
+      - 'Run arbitrary tasks.'
+      - '===================================================================='
+
+- name: Run tasks.
+  debug:
+    msg:
+      - '--------------------------------------------------------------------'
+      - 'Running tasks ...'
+      - '--------------------------------------------------------------------'
+  when: unified is not variable_empty
+
+- name: Loop through list of tasks.
+  include_tasks: tasks.yml
+  loop: "{{ unified_b }}"
+  loop_control:
+    loop_var: current_task
+  when: unified_b is not variable_empty

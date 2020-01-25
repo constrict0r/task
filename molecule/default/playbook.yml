@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: task
+      users: mary
+      user_tasks: https://is.gd/uE0TTp

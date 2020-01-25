@@ -1,0 +1,59 @@
+---
+# Tasks to copy vim configuration to each user home.
+
+- name: Vim configuration tasks.
+  debug:
+    msg:
+      - '--------------------------------------------------------------------'
+      - 'Configuring vim ...'
+      - '--------------------------------------------------------------------'
+
+- name: Download vimrc file.
+  get_url:
+    url: https://raw.githubusercontent.com/constrict0r/home/master/.vimrc
+    dest: /tmp/vimrc
+    force: true
+  delegate_to: "{{ inventory_hostname }}"
+  when: not ansible_check_mode
+
+- name: Configure vim editor.
+  copy:
+    src: /tmp/vimrc
+    dest: "/home/{{ item }}/.vimrc"
+    owner: "{{ item }}"
+    mode: u=rw,g=r,o=r
+    remote_src: true
+  with_items: "{{ unified }}"
+  become: true
+  delegate_to: "{{ inventory_hostname }}"
+  when:
+    - not ansible_check_mode
+    - item.item_name is not defined
+    - not item == 'root'
+
+- name: Configure vim editor using item_name.
+  copy:
+    src: /tmp/vimrc
+    dest: "/home/{{ item.item_name }}/.vimrc"
+    owner: "{{ item }}"
+    mode: u=rw,g=r,o=r
+    remote_src: true
+  with_items: "{{ unified }}"
+  become: true
+  delegate_to: "{{ inventory_hostname }}"
+  when:
+    - not ansible_check_mode
+    - item.item_name is defined
+    - not item.item_name == 'root'
+
+- name: Configure vim editor for root.
+  copy:
+    src: /tmp/vimrc
+    dest: /root/.vimrc
+    mode: u=rw,g=r,o=r
+    remote_src: true
+  become: true
+  delegate_to: "{{ inventory_hostname }}"
+  when:
+    - not ansible_check_mode
+    - unified | regex_replace('', '') is search('root')

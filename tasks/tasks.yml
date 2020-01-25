@@ -1,0 +1,80 @@
+---
+# Tasks to execute custom tasks.
+
+- name: Execute custom tasks.
+  debug:
+    msg:
+      - '--------------------------------------------------------------------'
+      - 'Run custom tasks ...'
+      - '--------------------------------------------------------------------'
+
+- name: Set tasks_path as empty.
+  set_fact:
+    tasks_path: ''
+
+- name: Handle URL tasks.
+  debug:
+    msg:
+      - '....................................................................'
+      - 'Handling URL tasks ...'
+      - '....................................................................'
+
+- name: Create temporary file.
+  tempfile:
+    state: file
+    suffix: tasks
+  register: temporary_tasks
+  delegate_to: localhost
+  changed_when: false
+  when: not ansible_check_mode
+
+- name: Download tasks file.
+  get_url:
+    url: "{{ current_task }}"
+    dest: "{{ temporary_tasks.path }}"
+    force: true
+  delegate_to: localhost
+  when:
+    - not ansible_check_mode
+    - current_task is variable_url_existent
+    - temporary_tasks.path is defined
+  changed_when: false
+
+- name: Set tasks_path to downloaded file.
+  set_fact:
+    tasks_path: "{{ temporary_tasks.path }}"
+  when:
+    - not ansible_check_mode
+    - current_task is variable_url_existent
+    - temporary_tasks.path is defined
+
+- name: Handle tasks path.
+  debug:
+    msg:
+      - '....................................................................'
+      - 'Handling tasks path ...'
+      - '....................................................................'
+
+- name: Set tasks_path = current_task when current_task is variable_path.
+  set_fact:
+    tasks_path: "{{ current_task }}"
+  when:
+    - not ansible_check_mode
+    - current_task is variable_path
+  delegate_to: localhost
+
+- name: Include/Run current tasks.
+  include_tasks: "{{ tasks_path }}"
+  when:
+    - not ansible_check_mode
+    - tasks_path is variable_path
+
+- name: Delete temporary tasks file.
+  file:
+    path: "{{ temporary_tasks.path }}"
+    state: absent
+  delegate_to: localhost
+  changed_when: false
+  when:
+    - not ansible_check_mode
+    - temporary_tasks.path is defined
