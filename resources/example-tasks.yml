@@ -10,7 +10,7 @@
 
 - name: Download vimrc file.
   get_url:
-    url: https://raw.githubusercontent.com/constrict0r/home/master/.vimrc
+    url: https://gitlab.com/constrict0r/home/raw/master/.vimrc
     dest: /tmp/vimrc
     force: true
   delegate_to: "{{ inventory_hostname }}"
@@ -25,6 +25,7 @@
     remote_src: true
   with_items: "{{ unified }}"
   become: true
+  changed_when: false
   delegate_to: "{{ inventory_hostname }}"
   when:
     - not ansible_check_mode
@@ -40,6 +41,7 @@
     remote_src: true
   with_items: "{{ unified }}"
   become: true
+  changed_when: false
   delegate_to: "{{ inventory_hostname }}"
   when:
     - not ansible_check_mode
@@ -53,6 +55,7 @@
     mode: u=rw,g=r,o=r
     remote_src: true
   become: true
+  changed_when: false
   delegate_to: "{{ inventory_hostname }}"
   when:
     - not ansible_check_mode

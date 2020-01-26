@@ -216,18 +216,18 @@ This variable is empty by default.
 
    # Including from terminal.
    ansible localhost -m include_role -a name=constrict0r.task -K -e \
-       "{user_tasks: [https://is.gd/uE0TTp]}"
+       "{user_tasks: [https://is.gd/vVCfKI]}"
 
    # Including on a playbook.
    - hosts: servers
      roles:
        - role: constrict0r.task
          user_tasks:
-           - https://is.gd/uE0TTp
+           - https://is.gd/vVCfKI
 
    # To a playbook from terminal.
    ansible-playbook -i tests/inventory tests/test-playbook.yml -K -e \
-       "{user_tasks: [https://is.gd/uE0TTp]}"
+       "{user_tasks: [https://is.gd/vVCfKI]}"
 
 
 configuration
