@@ -148,15 +148,17 @@ Usage
         vars:
           user_tasks: ['https://is.gd/uE0TTp']
 
-To run tests:
+* To run tests:
 
-::
+..
 
-   cd task
-   chmod +x testme.sh
-   ./testme.sh
+   ::
 
-On some tests you may need to use *sudo* to succeed.
+      cd task
+      chmod +x testme.sh
+      ./testme.sh
+
+   On some tests you may need to use *sudo* to succeed.
 
 
 Variables
