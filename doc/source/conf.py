@@ -74,7 +74,7 @@ global_substitutions = {
     "READTHEDOCS_BADGE": ".. image:: https://rtfd.io" + readthedocs_badge,
     "READTHEDOCS_LINK": readthedocs_link,
     "TRAVIS_BADGE": travis_badge,
-    "TRAVIS_LINK": travis_link  
+    "TRAVIS_LINK": travis_link
 }
 
 role_var = '-e "{user_tasks: [\'https://is.gd/uE0TTp\']}"'
