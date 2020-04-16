@@ -13,8 +13,8 @@ task
 
 Ansible role to run arbitrary tasks.
 
-.. image:: https://gitlab.com/constrict0r/img/raw/master/task/task.png
-   :alt: task
+.. image:: https://gitlab.com/constrict0r/img/raw/master/task/avatar.png
+   :alt: avatar
 
 Full documentation on `Readthedocs <https://task.readthedocs.io>`_.
 
@@ -24,15 +24,15 @@ Source code on:
 
 `Gitlab <https://gitlab.com/constrict0r/task>`_.
 
-`Part of: <https://gitlab.com/explore/projects?tag=doombots>`_
+`Part of: <https://gitlab.com/explore/projects?tag=doombot>`_
 
-.. image:: https://gitlab.com/constrict0r/img/raw/master/task/doombots.png
-   :alt: doombots
+.. image:: https://gitlab.com/constrict0r/img/raw/master/task/doombot.png
+   :alt: doombot
 
 **Ingredients**
 
-.. image:: https://gitlab.com/constrict0r/img/raw/master/task/ingredients.png
-   :alt: ingredients
+.. image:: https://gitlab.com/constrict0r/img/raw/master/task/ingredient.png
+   :alt: ingredient
 
 
 Contents
@@ -95,6 +95,7 @@ Or
 * Add to an item the attribute **item_expand** setted to *true*.
 
 
+
 Usage
 *****
 
@@ -148,17 +149,16 @@ Usage
         vars:
           user_tasks: ['https://is.gd/uE0TTp']
 
-* To run tests:
+To run tests:
 
-..
+::
 
-   ::
+   cd task
+   chmod +x testme.sh
+   ./testme.sh
 
-      cd task
-      chmod +x testme.sh
-      ./testme.sh
+On some tests you may need to use *sudo* to succeed.
 
-   On some tests you may need to use *sudo* to succeed.
 
 
 Variables
@@ -179,7 +179,7 @@ especified paths and URLs.
 If set to *false* each file path or URL found on user_tasks will be
 treated as plain text.
 
-This variable is set to *false* by default.
+This variable is set to *true* by default.
 
 ::
 
@@ -257,6 +257,7 @@ To see how to write  a configuration file see the *YAML* file format
 section.
 
 
+
 YAML
 ****
 
@@ -289,6 +290,7 @@ can set the **expand** variable to *true*:
 
 If the expand variable is *false*, any file path or URL found will be
 treated like plain text.
+
 
 
 Attributes
@@ -328,6 +330,7 @@ Absolute file path or URL to a *.yml* file.
 This attribute also works with URLs.
 
 
+
 Requirements
 ************
 
@@ -352,6 +355,7 @@ If you want to run the tests, you will also need:
 * `Setuptools <https://pypi.org/project/setuptools/>`_.
 
 
+
 Compatibility
 *************
 
@@ -364,10 +368,12 @@ Compatibility
 * `Ubuntu Xenial <http://releases.ubuntu.com/16.04/>`_.
 
 
+
 License
 *******
 
 MIT. See the LICENSE file for more details.
+
 
 
 Links
@@ -384,6 +390,7 @@ Links
 * `Travis CI <https://travis-ci.com/constrict0r/task>`_.
 
 
+
 UML
 ***
 
@@ -393,8 +400,8 @@ Deployment
 
 The full project structure is shown below:
 
-.. image:: https://gitlab.com/constrict0r/img/raw/master/task/deployment.png
-   :alt: deployment
+.. image:: https://gitlab.com/constrict0r/img/raw/master/task/deploy.png
+   :alt: deploy
 
 
 Main
@@ -404,6 +411,7 @@ The project data flow is shown below:
 
 .. image:: https://gitlab.com/constrict0r/img/raw/master/task/main.png
    :alt: main
+
 
 
 Author
@@ -418,4 +426,5 @@ Enjoy!!!
 
 .. image:: https://gitlab.com/constrict0r/img/raw/master/task/enjoy.png
    :alt: enjoy
+
 

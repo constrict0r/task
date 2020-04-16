@@ -1,5 +1,5 @@
 Description
-------------------------------------------------------------------------------
+--------------------------------------------------------------
 
 Ansible role to run arbitrary tasks.
 
@@ -33,4 +33,3 @@ You can change the default behaviour by:
 Or
 
 - Add to an item the attribute **item_expand** setted to *true*.
-
