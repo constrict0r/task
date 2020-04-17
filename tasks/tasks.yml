@@ -1,4 +1,4 @@
----
+	---
 # Tasks to execute custom tasks.
 
 - name: Execute custom tasks.
@@ -24,7 +24,6 @@
     state: file
     suffix: tasks
   register: temporary_tasks
-  delegate_to: localhost
   changed_when: false
   when: not ansible_check_mode
 
@@ -33,7 +32,6 @@
     url: "{{ current_task }}"
     dest: "{{ temporary_tasks.path }}"
     force: true
-  delegate_to: localhost
   when:
     - not ansible_check_mode
     - current_task is variable_url_existent
@@ -61,7 +59,6 @@
   when:
     - not ansible_check_mode
     - current_task is variable_path
-  delegate_to: localhost
 
 - name: Include/Run current tasks.
   include_tasks: "{{ tasks_path }}"
@@ -73,7 +70,6 @@
   file:
     path: "{{ temporary_tasks.path }}"
     state: absent
-  delegate_to: localhost
   changed_when: false
   when:
     - not ansible_check_mode
