@@ -81,14 +81,18 @@ This role performs the following actions:
 Inside each specified task is possible to use the **unified** variable
 that will have the list of specified users.
 
-This role do not expand files or URLs by default because the most
-common case is to specify URLs that points directly to a tasks file,
-so the default behaviour for this role is to treat file paths and URLs
-as plain text.
+This role expand files or URLs by default so you must write your items
+like:
 
-You can change the default behaviour by:
+::
 
-* Setting the **expand_b** variable to *true*.
+   user_tasks:
+     - item_path: ['https://is.gd/uE0TTp']
+       item_expand: false
+
+You can change this default behaviour by:
+
+* Setting the **expand** variable to *false*.
 
 Or
 
@@ -218,18 +222,38 @@ This variable is empty by default.
 
    # Including from terminal.
    ansible localhost -m include_role -a name=constrict0r.task -K -e \
-       "{user_tasks: [https://is.gd/vVCfKI]}"
+       "{user_tasks: [item_path: https://is.gd/vVCfKI, item_expand: false]}"
+
+   # Or:
+   # Including from terminal.
+   ansible localhost -m include_role -a name=constrict0r.task -K -e \
+       "{user_tasks: [https://is.gd/vVCfKI], expand: false}"
 
    # Including on a playbook.
    - hosts: servers
      roles:
        - role: constrict0r.task
          user_tasks:
+           - item_path: https://is.gd/vVCfKI
+             item_expand: false
+
+   # Or:
+   # Including on a playbook.
+   - hosts: servers
+     roles:
+       - role: constrict0r.task
+         user_tasks:
            - https://is.gd/vVCfKI
+         expand: false
 
    # To a playbook from terminal.
-   ansible-playbook -i tests/inventory tests/test-playbook.yml -K -e \
-       "{user_tasks: [https://is.gd/vVCfKI]}"
+   ansible-playbook -i inventory my-playbook.yml -K -e \
+       "{user_tasks: [item_path: https://is.gd/vVCfKI, item_expand: false]}"
+
+   # Or:
+   # To a playbook from terminal.
+   ansible-playbook -i inventory my-playbook.yml -K -e \
+       "{user_tasks: [https://is.gd/vVCfKI], expand: false}"
 
 
 configuration

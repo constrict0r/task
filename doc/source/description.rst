@@ -22,13 +22,18 @@ This role performs the following actions:
 Inside each specified task is possible to use the **unified** variable that
 will have the list of specified users.
 
-This role do not expand files or URLs by default because the most common case
-is to specify URLs that points directly to a tasks file, so the
-default behaviour for this role is to treat file paths and URLs as plain text.
+This role expand files or URLs by default so you must write your items like:
 
-You can change the default behaviour by:
+.. substitution-code-block:: bash
 
-- Setting the **expand_b** variable to *true*.
+ |DEFAULT_VAR_NAME|:
+   - item_path: |DEFAULT_VAR_VALUE|
+     item_expand: false
+
+
+You can change this default behaviour by:
+
+- Setting the **expand** variable to *false*.
 
 Or
 

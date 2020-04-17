@@ -40,7 +40,6 @@
     - role: task
       configuration:
         - item_path: https://is.gd/1uIPs9
-          item_expand: true
 
   post_tasks:
     - name: Run verification tests.
