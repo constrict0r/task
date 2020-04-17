@@ -38,8 +38,7 @@
 
   roles:
     - role: task
-      configuration:
-        - item_path: https://is.gd/1uIPs9
+      configuration: https://is.gd/1uIPs9
 
   post_tasks:
     - name: Run verification tests.
